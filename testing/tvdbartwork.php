@@ -7,7 +7,8 @@ require_once (FS_ROOT . "/../../www/lib/util.php");
 include("SimpleImage.php");
     
     $key = '5F84ECB91B42D719';
-			
+	$nnpath = '/var/www/newznab/www';
+	
 	function getTVDb()
 	{			
 		$db = new DB();
@@ -78,13 +79,13 @@ include("SimpleImage.php");
 		}else
 		{
 		
-			file_put_contents("/var/www/newznab/www/covers/tv//posters/".$sid.".jpg",
+			file_put_contents($nnpath."/covers/tv//posters/".$sid.".jpg",
 				file_get_contents("http://www.thetvdb.com/banners/".$res));
 											
 				$image = new SimpleImage();
-				$image->load("/var/www/newznab/www/covers/tv/posters/".$sid.".jpg");
+				$image->load($nnpath."/covers/tv/posters/".$sid.".jpg");
 				$image->resize(276,406);
-				$image->save("/var/www/newznab/www/covers/tv/posters/".$sid.".jpg");
+				$image->save($nnpath."/covers/tv/posters/".$sid.".jpg");
 				usleep(400000);
 		
 				setTVDb($result['tvdbID'], 1);
